@@ -13,8 +13,8 @@ return new class extends Migration
     {
         //add foreign keys
         Schema::table('zahtevi', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('usluge');
-            $table->foreign('usluga_id')->references('id')->on('hitnost');
+            $table->foreign('usluga_id')->references('id')->on('usluge');
+            $table->foreign('hitnost_id')->references('id')->on('hitnost');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
