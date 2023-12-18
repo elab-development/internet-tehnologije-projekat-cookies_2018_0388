@@ -10,6 +10,9 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_VLASNIK = 'vlasnik';
+    
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -21,8 +24,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'brojTelefona',
+        'rolaUsera'
     ];
-
     /**
      * The attributes that should be hidden for serialization.
      *
