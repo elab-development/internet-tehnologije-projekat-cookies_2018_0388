@@ -11,7 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //add foreign keys
         Schema::table('zahtevi', function (Blueprint $table) {
             $table->foreign('usluga_id')->references('id')->on('usluge');
             $table->foreign('hitnost_id')->references('id')->on('hitnost');
