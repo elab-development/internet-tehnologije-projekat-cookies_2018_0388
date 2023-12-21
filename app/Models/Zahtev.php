@@ -12,7 +12,7 @@ class Zahtev extends Model
     protected $table = 'zahtevi';
 
     protected $fillable = [
-        'nazivLjubima',
+        'nazivLjubimca',
         'vrstaLjubimca',
         'user_id',
         'usluga_id',
