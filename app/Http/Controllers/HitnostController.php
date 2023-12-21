@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\HitnostResurs;
 use App\Models\Hitnost;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class HitnostController extends Controller

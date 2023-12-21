@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ZahtevResurs;
 use App\Models\Zahtev;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class ZahtevController extends Controller
@@ -50,7 +50,6 @@ class ZahtevController extends Controller
             'user_id' => 'required',
             'hitnost_id' => 'required',
             'usluga_id' => 'required',
-            'status' => 'required',
         ]);
 
         if($validator->fails())
@@ -67,7 +66,7 @@ class ZahtevController extends Controller
             'user_id' => $request->user_id,
             'hitnost_id' => $request->hitnost_id,
             'usluga_id' => $request->usluga_id,
-            'status' => $request->status,
+            'status' => 'Na cekanju',
         ]);
 
         return response()->json([
@@ -90,12 +89,11 @@ class ZahtevController extends Controller
         }
 
         $zahtev->update([
-            'nazivLjubima' => $request->nazivLjubima,
+            'nazivLjubimca' => $request->nazivLjubimca,
             'vrstaLjubimca' => $request->vrstaLjubimca,
             'user_id' => $request->user_id,
             'hitnost_id' => $request->hitnost_id,
             'usluga_id' => $request->usluga_id,
-            'status' => $request->status,
         ]);
 
         return response()->json([
