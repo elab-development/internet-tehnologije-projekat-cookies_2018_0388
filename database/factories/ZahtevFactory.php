@@ -10,7 +10,7 @@ class ZahtevFactory extends Factory
     public function definition()
     {
         return [
-            'nazivLjubima' => $this->faker->word(),
+            'nazivLjubimca' => $this->faker->word(),
             'vrstaLjubimca' => $this->faker->word(),
             'user_id' => $this->faker->numberBetween(1, 10),
             'usluga_id' => $this->faker->numberBetween(1, 6),
