@@ -16,7 +16,7 @@ class UslugaResurs extends JsonResource
     {
         return [
             'id' => $this->id,
-            'naziv' => $this->naziv,
+            'naziv' => $this->nazivUsluge,
             'cena' => $this->cena,
         ];
     }
