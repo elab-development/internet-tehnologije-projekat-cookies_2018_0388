@@ -26,7 +26,7 @@ return new class extends Migration
         Schema::table('zahtevi', function (Blueprint $table) {
             $table->dropForeign('zahtevi_user_id_foreign');
             $table->dropForeign('zahtevi_usluga_id_foreign');
-            $table->dropForeign('zahtevi_user_id_foreign');
+            $table->dropForeign('zahtevi_hitnost_id_foreign');
         });
     }
 };
