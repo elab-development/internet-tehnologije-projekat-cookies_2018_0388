@@ -11,6 +11,8 @@ import Pitanja from "./stranice/Pitanja";
 import {Container} from "react-bootstrap";
 import Footer from "./komponente/Footer";
 import Login from "./stranice/Login";
+import Register from './stranice/Register';
+import Admin from './stranice/Admin';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
                 <Route path="/pitanja" element={<Pitanja />} />
                 <Route path="/kontakt" element={<Kontakt />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/admin" element={<Admin />} />
             </Routes>
             </Container>
             <Footer />
