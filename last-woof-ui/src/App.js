@@ -10,6 +10,7 @@ import Kontakt from "./stranice/Kontakt";
 import Pitanja from "./stranice/Pitanja";
 import {Container} from "react-bootstrap";
 import Footer from "./komponente/Footer";
+import Login from "./stranice/Login";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/usluge" element={<Usluge />} />
                 <Route path="/pitanja" element={<Pitanja />} />
                 <Route path="/kontakt" element={<Kontakt />} />
+                <Route path="/login" element={<Login />} />
             </Routes>
             </Container>
             <Footer />
