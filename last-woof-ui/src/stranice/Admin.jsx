@@ -3,6 +3,7 @@ import {Col, Row} from "react-bootstrap";
 import axiosInstanca from "../zahtev/axiosInstanca";
 import Tabela from "../komponente/Tabela";
 import {Chart} from "react-google-charts";
+import {CSVLink} from "react-csv";
 
 const Admin = () => {
 
@@ -77,6 +78,8 @@ const Admin = () => {
                     height="400px"
                     legendToggle
                 />
+
+                <CSVLink filename='ChartData' data={chartData}>Download chart data</CSVLink>
             </Row>
 
         </>
