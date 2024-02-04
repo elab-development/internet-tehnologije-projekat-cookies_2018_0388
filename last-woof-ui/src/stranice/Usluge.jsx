@@ -1,10 +1,26 @@
 import React, {useEffect, useState} from 'react';
 import {Bs1CircleFill, Bs2CircleFill, Bs3CircleFill, Bs4CircleFill, Bs5CircleFill, Bs6CircleFill} from "react-icons/bs";
-import {Col, Row} from "react-bootstrap";
+import {Col, Row, Table} from "react-bootstrap";
 import JednaUsluga from "../komponente/JednaUsluga";
 import axiosInstanca from "../zahtev/axiosInstanca";
 
 const Usluge = () => {
+
+    const ulogovan = window.sessionStorage.getItem('token') !== null;
+
+    const user = ulogovan ? JSON.parse(window.sessionStorage.getItem('user')) : null;
+
+    const [uslugeKorisnika, setUslugeKorisnika] = useState([]);
+
+    useEffect(() => {
+        if (ulogovan) {
+            axiosInstanca.get(/zahtevi/user/${user.id}).then(res => {
+                setUslugeKorisnika(res.data.podaci);
+            }).catch(err => {
+                console.log(err);
+            });
+        }
+    }, [ulogovan, user]);
 
     const nizIkonaIBoja = [
     {naziv: 'Sahrana', icon: <Bs1CircleFill />, boja: "primary"},
@@ -50,6 +66,50 @@ const Usluge = () => {
                     ))
                 }
             </Row>
+            <Row className="mt-3">
+                <h1>Vase prethodne usluge</h1>
+            </Row>
+
+            {
+                ulogovan && (
+                    <Row className="mt-3">
+                        <Table hover variant="dark">
+                            <thead>
+                                <tr>
+                                    <th>Naziv ljubimca</th>
+                                    <th>Vrsta ljubimca</th>
+                                    <th>Usluga</th>
+                                    <th>User</th>
+                                    <th>Hitnost</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                uslugeKorisnika.map(usluga => (
+                                    <tr key={usluga.id}>
+                                        <td>{usluga.nazivLjubimca}</td>
+                                        <td>{usluga.vrstaLjubimca}</td>
+                                        <td>{usluga.usluga.naziv}</td>
+                                        <td>{usluga.user.name}</td>
+                                        <td>{usluga.hitnost.naziv}</td>
+                                        <td>{usluga.status}</td>
+                                    </tr>
+                                ))
+                            }
+                            </tbody>
+                        </Table>
+                    </Row>
+                )
+            }
+
+            {
+                !ulogovan && (
+                    <Row className="mt-3">
+                        <p>Morate biti ulogovani da biste videli vase prethodne usluge</p>
+                    </Row>
+                )
+            }
         </>
     );
 };
