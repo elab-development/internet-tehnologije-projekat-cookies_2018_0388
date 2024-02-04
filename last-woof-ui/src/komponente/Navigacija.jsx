@@ -1,7 +1,10 @@
 import React from 'react';
 import {Container, Nav, Navbar} from "react-bootstrap";
+import {useCookies} from "react-cookie";
 
 const Navigacija = () => {
+
+    const [cookies, setCookies] = useCookies(["username"]);
 
     let tokenPostoji = window.sessionStorage.getItem("token");
 
@@ -10,6 +13,7 @@ const Navigacija = () => {
     const handleLogout = () => {
         window.sessionStorage.removeItem("token");
         window.sessionStorage.removeItem("user");
+        setCookies("username", "", {path: "/"});
         window.location.href = "/";
     }
 

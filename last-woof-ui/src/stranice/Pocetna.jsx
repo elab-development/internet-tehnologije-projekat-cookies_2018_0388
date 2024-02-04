@@ -6,8 +6,11 @@ import macka from '../slike/macka.jpeg';
 import {Button, Col, Row} from "react-bootstrap";
 import PoslednjiPozdravKartica from "../komponente/PoslednjiPozdravKartica";
 import {Link} from "react-router-dom";
+import {useCookies} from "react-cookie";
 
 const Pocetna = () => {
+
+    const [cookies, setCookie] = useCookies(["username"]);
 
     const pozdravi = [
         {
@@ -53,7 +56,7 @@ const Pocetna = () => {
     return (
         <>
             <div className="header">
-                <h1>Dobrodosli na sajt LastWoof</h1>
+                <h1>Dobrodosli na sajt LastWoof { cookies.username ? cookies.username : '' }</h1>
             </div>
             <Row className="mt-3">
                 <h1 className="text-center">Poslednji pozdrav</h1>

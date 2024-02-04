@@ -2,8 +2,11 @@ import React from 'react';
 import {Button, Col, Form, Row} from "react-bootstrap";
 import useForm from "../form-hooks/FormData";
 import axiosInstanca from "../zahtev/axiosInstanca";
+import {useCookies} from "react-cookie";
 
 const Login = () => {
+
+    const [cookies, setCookie] = useCookies(["username"]);
 
     const { formData, handleChange } = useForm(
         {
@@ -19,6 +22,7 @@ const Login = () => {
             console.log(res.data);
             window.sessionStorage.setItem('token', res.data.podaci.token);
             window.sessionStorage.setItem('user', JSON.stringify(res.data.podaci.user));
+            setCookie('username', res.data.podaci.user.name, {path: '/' });
             window.location.href = '/';
         }).catch(err => {
             console.log(err);
