@@ -14,7 +14,7 @@ const Usluge = () => {
 
     useEffect(() => {
         if (ulogovan) {
-            axiosInstanca.get(/zahtevi/user/${user.id}).then(res => {
+            axiosInstanca.get(`/zahtevi/user/${user.id}`).then(res => {
                 setUslugeKorisnika(res.data.podaci);
             }).catch(err => {
                 console.log(err);
