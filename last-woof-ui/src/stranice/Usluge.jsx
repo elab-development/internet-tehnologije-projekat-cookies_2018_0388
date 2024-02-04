@@ -4,6 +4,7 @@ import {Col, Row, Table} from "react-bootstrap";
 import JednaUsluga from "../komponente/JednaUsluga";
 import axiosInstanca from "../zahtev/axiosInstanca";
 import Tabela from "../komponente/Tabela";
+import {CgDanger} from "react-icons/cg";
 
 const Usluge = () => {
 
@@ -42,9 +43,14 @@ const Usluge = () => {
             for (let i = 0; i < uslugePodaci.length; i++) {
 
                 let objekat = nizIkonaIBoja.find(el => el.naziv === uslugePodaci[i].naziv);
-
-                uslugePodaci[i].icon = objekat.icon;
-                uslugePodaci[i].boja = objekat.boja;
+                
+                if (objekat === undefined) {
+                    uslugePodaci[i].icon = <CgDanger />;
+                    uslugePodaci[i].boja = "primary";
+                }else{
+                    uslugePodaci[i].icon = objekat.icon;
+                    uslugePodaci[i].boja = objekat.boja;
+                }
             }
 
             setUsluge(uslugePodaci);
