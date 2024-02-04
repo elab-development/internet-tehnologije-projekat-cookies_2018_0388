@@ -21,11 +21,11 @@ Route::post("login", "App\Http\Controllers\UserController@login");
 Route::post("register", "App\Http\Controllers\UserController@register");
 
 //sanctum group
+Route::get('usluge', 'App\Http\Controllers\UslugaController@index');
 
 Route::middleware('auth:sanctum')->group(function (){
     Route::post("logout", "App\Http\Controllers\UserController@logout");
     Route::resource("hitnosti", "App\Http\Controllers\HitnostController");
-    Route::get('usluge', 'App\Http\Controllers\UslugaController@index');
     Route::get('usluge/{id}', 'App\Http\Controllers\UslugaController@show');
     Route::post('usluge', 'App\Http\Controllers\UslugaController@store');
     Route::put('usluge/{id}', 'App\Http\Controllers\UslugaController@update');
