@@ -23,6 +23,7 @@ const Navigacija = () => {
                         <Nav.Link href="/onama">O nama</Nav.Link>
                         <Nav.Link href="/usluge">Usluge</Nav.Link>
                         <Nav.Link href="/pitanja">Pitanja</Nav.Link>
+                        <Nav.Link href="/rase">Rase pasa</Nav.Link>
                         <Nav.Link href="/kontakt">Kontakt</Nav.Link>
                         {
                             userUlogovan && userUlogovan.rolaUsera === "admin" ? <Nav.Link href="/admin">Admin</Nav.Link> : null

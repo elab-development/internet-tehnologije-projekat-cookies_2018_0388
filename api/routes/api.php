@@ -22,6 +22,7 @@ Route::post("register", "App\Http\Controllers\UserController@register");
 
 //sanctum group
 Route::get('usluge', 'App\Http\Controllers\UslugaController@index');
+Route::get('rase', 'App\Http\Controllers\ZahtevController@rase');
 
 Route::middleware('auth:sanctum')->group(function (){
     Route::post("logout", "App\Http\Controllers\UserController@logout");

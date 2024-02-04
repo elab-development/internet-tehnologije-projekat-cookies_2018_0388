@@ -163,4 +163,21 @@ class ZahtevController extends Controller
             'podaci' => ZahtevResurs::collection($zahtevi),
         ], 200);
     }
+
+    public function rase()
+    {
+        $cURLConnection = curl_init();
+
+        curl_setopt($cURLConnection, CURLOPT_URL, 'https://dog.ceo/api/breeds/list/all');
+        curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+
+        $rase = curl_exec($cURLConnection);
+        curl_close($cURLConnection);
+
+
+        return response()->json([
+            'poruka' => 'Uspesno ucitane rase',
+            'podaci' => json_decode($rase),
+        ], 200);
+    }
 }

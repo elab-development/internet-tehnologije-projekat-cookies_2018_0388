@@ -13,6 +13,7 @@ import Footer from "./komponente/Footer";
 import Login from "./stranice/Login";
 import Register from './stranice/Register';
 import Admin from './stranice/Admin';
+import Rase from './stranice/Rase';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/admin" element={<Admin />} />
+                <Route path="/rase" element={<Rase />} />
             </Routes>
             </Container>
             <Footer />
