@@ -125,7 +125,10 @@ class ZahtevController extends Controller
 
     public function findByUserId(Request $request, $id)
     {
-        $zahtevi = Zahtev::where('user_id', $id)->get();
+        $zahtevi = DB::table('zahtevi as z')
+            ->where('z.user_id', $id)
+            ->orderBy('z.status', 'desc')
+            ->get();
 
         return response()->json([
             'poruka' => 'Uspesno ucitani zahtevi',
