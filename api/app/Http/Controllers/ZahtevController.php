@@ -48,9 +48,9 @@ class ZahtevController extends Controller
         $validator = Validator::make($request->all(), [
             'nazivLjubimca' => 'required',
             'vrstaLjubimca' => 'required',
-            'user_id' => 'required',
-            'hitnost_id' => 'required',
-            'usluga_id' => 'required',
+            'user_id' => 'required|numeric',
+            'hitnost_id' => 'required|numeric',
+            'usluga_id' => 'required|numeric',
         ]);
 
         if($validator->fails())
