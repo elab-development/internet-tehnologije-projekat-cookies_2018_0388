@@ -6,6 +6,7 @@ use App\Http\Resources\ZahtevResurs;
 use App\Models\Zahtev;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class ZahtevController extends Controller
 {
@@ -178,6 +179,20 @@ class ZahtevController extends Controller
         return response()->json([
             'poruka' => 'Uspesno ucitane rase',
             'podaci' => json_decode($rase),
+        ], 200);
+    }
+
+    public function zahteviPoUsluzi()
+    {
+        $zahtevi = DB::table('zahtevi as z')
+            ->select(DB::raw('u.nazivUsluge, COUNT(*) as brojZahteva'))
+            ->join('usluge as u', 'z.usluga_id', '=', 'u.id')
+            ->groupBy('u.nazivUsluge')
+            ->get();
+
+        return response()->json([
+            'poruka' => 'Uspesno ucitani zahtevi',
+            'podaci' => $zahtevi,
         ], 200);
     }
 }

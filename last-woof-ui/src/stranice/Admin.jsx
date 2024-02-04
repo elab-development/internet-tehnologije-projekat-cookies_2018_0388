@@ -2,12 +2,29 @@ import React, {useEffect, useState} from 'react';
 import {Col, Row} from "react-bootstrap";
 import axiosInstanca from "../zahtev/axiosInstanca";
 import Tabela from "../komponente/Tabela";
+import {Chart} from "react-google-charts";
 
 const Admin = () => {
 
     const zahteviPoStranici = 10;
     const [trenutnaStranica, setTrenutnaStranica] = useState(1);
     const [trenutniZahtevi, setTrenutniZahtevi] = useState([]);
+    const [chartData, setChartData] = useState([]);
+
+    useEffect(() => {
+        axiosInstanca.get('/grafik').then(res => {
+            let niz = [];
+            niz.push(['Naziv', 'Broj zahteva']);
+
+            for (let i = 0; i < res.data.podaci.length; i++) {
+                niz.push([res.data.podaci[i].nazivUsluge, res.data.podaci[i].brojZahteva]);
+            }
+
+            setChartData(niz);
+        }).catch(err => {
+            console.log(err);
+        })
+    }, []);
 
     useEffect(() => {
        filtrirajZahteve();
@@ -50,7 +67,16 @@ const Admin = () => {
                         stranica
                     </button>
                 </Col>
+            </Row>
 
+            <Row className="mt-3">
+                <Chart
+                    chartType="PieChart"
+                    data={chartData}
+                    width="100%"
+                    height="400px"
+                    legendToggle
+                />
             </Row>
 
         </>
